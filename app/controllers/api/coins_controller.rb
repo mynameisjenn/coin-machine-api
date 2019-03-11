@@ -16,7 +16,7 @@ class Api::CoinsController < ApplicationController
 		if @coin.save
 			render 'show.json.jbuilder'
 		else
-			render json: @coins.errors.full_messages, status: :unprocessable_entity
+			render json: @coin.errors.full_messages, status: :unprocessable_entity
 		end
 	end
 

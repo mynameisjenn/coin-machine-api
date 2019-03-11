@@ -23,3 +23,4 @@ Things you may want to cover:
 
 * ...
 # coin-machine-api
+# coin-machine-api

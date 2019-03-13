@@ -1,7 +1,8 @@
 class Api::TransactionsController < ApplicationController
+	before_action :verify_user, only: [:index, :create]
 
 	def index
-		@transactions = Transaction.all
+		@transactions = Transaction.where(user_id: @current_user.id)
 		render 'index.json.jbuilder'
 	end
 
@@ -11,22 +12,12 @@ class Api::TransactionsController < ApplicationController
 
 	def create
 		@transaction = Transaction.new(transaction_params)
-		@coin = Coin.find(params[:transaction][:coin_id])
+		@transaction.user_id = @current_user.id
 
-		if @transaction.save && @transaction.deposited == true && @coin.name == "quarter"
-			@coin.update(value: @coin.value + 0.25)
-			render 'show.json.jbuilder'
-		elsif @transaction.save && @transaction.deposited == true && @coin.name == "dime"
-			@coin.update(value: @coin.value + 0.10)
-			render 'show.json.jbuilder'
-		elsif @transaction.save && @transaction.deposited == true && @coin.name == "nickel"
-			@coin.update(value: @coin.value + 0.05)
-			render 'show.json.jbuilder'
-		elsif @transaction.save && @transaction.deposited == true && @coin.name == "penny"
-			@coin.update(value: @coin.value + 0.01)
-			render 'show.json.jbuilder'
+		if @transaction.save 
+			render json: 'show.json.jbuilder'
 		else
-			render json: @transaction.errors.full_messages, status: :unprocessable_entity
+			render json: @transaction.errors.full_messages 
 		end
 	end
 
@@ -42,6 +33,6 @@ class Api::TransactionsController < ApplicationController
 
 private
   		def transaction_params
-    		params.require(:transaction).permit(:coin_id, :deposited, :user_id)
+    		params.require(:transaction).permit(:coin_id, :deposited)
   		end
 end

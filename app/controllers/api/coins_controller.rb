@@ -2,8 +2,12 @@ class Api::CoinsController < ApplicationController
 
 	def index
 		@coins = Coin.all
-		@coins.total
 		render 'index.json.jbuilder'
+	end
+
+	def system_coin_total
+		@coin_count = Coin.total
+		render json: { coin_count: @coin_count }
 	end
 
 	def new
@@ -16,7 +20,7 @@ class Api::CoinsController < ApplicationController
 		if @coin.save
 			render 'show.json.jbuilder'
 		else
-			render json: @coin.errors.full_messages, status: :unprocessable_entity
+			render json: { error: @coin.errors.full_messages }, status: :unprocessable_entity
 		end
 	end
 
@@ -33,14 +37,14 @@ class Api::CoinsController < ApplicationController
     	if @coin.save
       		render 'show.json.jbuilder'
     	else
-      		render json: @coin.errors.full_messages, status: :unprocessable_entity
+      		render json: { error: @coin.errors.full_messages }, status: :unprocessable_entity
     	end
 	end
 
 	def destroy
     	@coin = Coin.find(params[:id])
     	@coin.destroy
-    	render json: "Coin successfully destroyed."
+    	render json: { message: "Coin successfully destroyed." }
 	end
 
 private

@@ -15,6 +15,7 @@ class Transaction < ApplicationRecord
  		errors.add(:deposited, "invalid coins") if balance <= 0  
  	end	
 
+ 	
 	def format_time
   		created_at.strftime("%m.%d.%y")
   	end

@@ -4,10 +4,10 @@ Rails.application.routes.draw do
 
   namespace :api do
   	resources :coins 
-  	resources :transactions 
+  	resources :transactions
 
   	get "/system_coin_total" => "coins#system_coin_total"
   	post "/users" => "users#create"
-  	post "/sessions" => "sessions#create"
+ 
   end
 end

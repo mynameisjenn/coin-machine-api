@@ -6,43 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-transaction = Transaction.new(user_id: 1, coin_id: 3, deposited: true)
-transaction.save
+coin = Coin.new(name: "quarter", value: 0.25)
+coin.save
 
-transaction = Transaction.new(user_id: 1, coin_id: 5, deposited: true)
-transaction.save
+coin = Coin.new(name: "dime", value: 0.10)
+coin.save
 
-transaction = Transaction.new(user_id: 1, coin_id: 6, deposited: true)
-transaction.save
+coin = Coin.new(name: "nickel", value: 0.05)
+coin.save
 
-transaction = Transaction.new(user_id: 1, coin_id: 7, deposited: true)
-transaction.save
-
-transaction = Transaction.new(user_id: 1, coin_id: 8, deposited: true)
-transaction.save
-
-transaction = Transaction.new(user_id: 1, coin_id: 9, deposited: true)
-transaction.save
-
-transaction = Transaction.new(user_id: 1, coin_id: 10, deposited: true)
-transaction.save
-
-transaction = Transaction.new(user_id: 1, coin_id: 11, deposited: true)
-transaction.save
-
-transaction = Transaction.new(user_id: 2, coin_id: 12, deposited: true)
-transaction.save
-
-transaction = Transaction.new(user_id: 2, coin_id: 13, deposited: true)
-transaction.save
-
-transaction = Transaction.new(user_id: 2, coin_id: 14, deposited: true)
-transaction.save
-
-transaction = Transaction.new(user_id: 2, coin_id: 15, deposited: true)
-transaction.save
-
-transaction = Transaction.new(user_id: 2, coin_id: 16, deposited: true)
-transaction.save
-
+coin = Coin.new(name: "penny", value: 0.01)
+coin.save
 

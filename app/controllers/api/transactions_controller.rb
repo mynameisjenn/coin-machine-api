@@ -15,7 +15,7 @@ class Api::TransactionsController < ApplicationController
 		@transaction.user_id = @current_user.id
 
 		if @transaction.save 
-			render json: 'show.json.jbuilder'
+			render json: @transaction
 		else
 			render json: @transaction.errors.full_messages 
 		end
